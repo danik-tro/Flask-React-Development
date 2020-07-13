@@ -36,7 +36,7 @@ app = Flask(__name__)
 def index():
     x = [1,2,3,4]
     return render_template(
-        "hello.html",
+        "index.html",
         title="Start page",
         menu=x)
 
@@ -45,7 +45,7 @@ def index():
 def hello_world(name=None):
     
     return render_template(
-        'hello.html', name=name,
+        'index.html', name=name,
         title=name if name else "Привет мир",
         menu=[]
         )
