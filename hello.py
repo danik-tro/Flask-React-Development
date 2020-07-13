@@ -17,7 +17,7 @@ def index():
 def hello_world(name=None):
     return render_template(
         'hello.html', name=name,
-        title=name if name else "Hello page"
+        title=name if name else "Привет мир"
         )
 
 
