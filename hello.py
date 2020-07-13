@@ -10,14 +10,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("hello.html", title="Start page")
+    x = [1,2,3,4]
+    return render_template(
+        "hello.html",
+        title="Start page",
+        menu=x)
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello_world(name=None):
     return render_template(
         'hello.html', name=name,
-        title=name if name else "Привет мир"
+        title=name if name else "Привет мир",
+        menu=[]
         )
 
 
