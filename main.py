@@ -32,22 +32,27 @@ app = Flask(__name__)
 ?          |__styles.css
 """
 
+menu = [
+    {"name" : "Установка", "url" : "install-flask"},
+    {"name" : "Первое приложение", "url" : "first-app"},
+    {"name" : "Обратная связь", "url" : "contact"}
+    ]
+
 @app.route('/')
 def index():
-    x = [1,2,3,4]
-    return render_template(
-        "index.html",
-        title="Start page",
-        menu=x)
-
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello_world(name=None):
     
     return render_template(
-        'index.html', name=name,
-        title=name if name else "Привет мир",
-        menu=[]
+        "index.html",
+        menu=menu)
+
+@app.route('/about/')
+@app.route('/about/<name>')
+def hello_world(name="Про Flask"):
+    
+    return render_template(
+        'about.html', name=name,
+        title="Flask",
+        menu=menu
         )
 
 
