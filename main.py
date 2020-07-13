@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
@@ -47,7 +47,7 @@ def index():
 
 @app.route('/about/')
 @app.route('/about/<name>')
-def hello_world(name="Про Flask"):
+def about(name="Про Flask"):
     
     return render_template(
         'about.html', name=name,
@@ -55,8 +55,11 @@ def hello_world(name="Про Flask"):
         menu=menu
         )
 
-@app.route('/contact')
+@app.route('/contact', methods=["POST", "GET"])
 def contact():
+    if request.method == 'POST':
+        print(request.form)
+
     return render_template("contact.html", title="Обратная связь", menu=menu)
 
 if __name__ == "__main__":
