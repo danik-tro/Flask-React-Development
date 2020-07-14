@@ -1,4 +1,6 @@
-from flask import Flask, render_template, url_for, request, flash, redirect, session
+from flask import (Flask,
+    render_template, url_for, request,
+    flash, redirect, session, abort)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sghowh2hg82gh09g20gh2hgohg90whewkjdhoiwjf092'#Произвольные символы. Чем тяжелее, тем лучше
@@ -34,6 +36,7 @@ app.config['SECRET_KEY'] = 'sghowh2hg82gh09g20gh2hgohg90whewkjdhoiwjf092'#Про
 """
 
 menu = [
+    {"name": "Авторизация", "url" : "login"},
     {"name" : "Установка", "url" : "install-flask"},
     {"name" : "Первое приложение", "url" : "first-app"},
     {"name" : "Обратная связь", "url" : "contact"}
@@ -78,6 +81,13 @@ def login():
         return redirect(url_for('profile', username=session['userLogged']))
 
     return render_template('login.html', title='Авторизация', menu=menu)
+
+
+@app.route('/profile/<username>')
+def profile(username):
+    if 'userLogged' not in session or session['userLogged'] != username:
+        abort(401)
+    return f'Профиль пользователя: {username}'
 
 
 @app.errorhandler(404)
