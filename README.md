@@ -1,4 +1,5 @@
 # Flask-development
+In this repository, I will to learn how to use Flask and with those framework React.Js for Frontend development.
 
 ## Postgresql - install on ubuntu
 
