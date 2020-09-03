@@ -4,6 +4,8 @@ CREATE TABLE IF NOT EXISTS mainmenu (
     url text NOT NULL
 );
 
+
+
 CREATE TABLE IF NOT EXISTS posts (
     id INTEGER PRIMARY KEY autoincrement,
     title text NOT NULL, 
