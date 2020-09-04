@@ -6,6 +6,8 @@ CREATE TABLE IF NOT EXISTS mainmenu (
 
 
 
+
+
 CREATE TABLE IF NOT EXISTS posts (
     id INTEGER PRIMARY KEY autoincrement,
     title text NOT NULL, 
