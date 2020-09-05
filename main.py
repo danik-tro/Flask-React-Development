@@ -9,6 +9,10 @@ app.config['SECRET_KEY'] = 'sghowh2hg82gh09g20gh2hgohg90whewkjdhoiwjf092'#Про
     ! для активации виртуальной среды - source ./venv/bin/source
 """
 
+"""
+    * Изучение Flask-RESTful API приложение
+"""
+
 
 
 """
