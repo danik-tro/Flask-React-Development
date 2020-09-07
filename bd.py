@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, g, flash
+from flask import Flask, render_template, request, g, flash, abort, redirect
 import sqlite3
 import os
 from FDbase import FdataBase
@@ -100,6 +100,21 @@ def addPost():
         else:
             flash('Ошибка добавления статьи', category='error')
     return render_template('add_post.html', menu=dbase.getMenu(), title='Добавление статьи')
+
+@app.route('/post/<int:id_post>')
+def showPost(id_post):
+    db = get_db()
+    dbase = FdataBase(db)
+
+    print(dbase.getPost(id_post))
+    title_post = dbase.getPost(id_post)
+
+    if not title_post['title']:
+        abort(404)
+    
+    return render_template('post.html', menu=dbase.getMenu(), title=title_post['title'], post=title_post['text'])
+
+
 
 
 if __name__ == '__main__':
