@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, g, flash
 import sqlite3
 import os
 from FDbase import FdataBase
@@ -76,12 +76,30 @@ def index():
     db = get_db()
 
     dbase = FdataBase(db)
-    """tmp = dbase.getMenu()
-    tmp[0]['url'] = '/'
-    tmp[1]['url'] = 'add_post'
-    print(tmp)"""
     return render_template('index.html', menu=dbase.getMenu())
 
+"""
+    ! В шаблонах html в url_for нужно писать не жесткие пути
+    ! А функцию представления, как в случае с фукнцией addPost
+
+    * Путь /add_post, но функция представления addPost()
+"""
+@app.route('/add_post', methods=['POST', "GET"])
+def addPost():
+    db = get_db()
+    dbase = FdataBase(db)
+
+    if request.method == 'POST':
+        if len(request.form['name']) > 4 and len(request.form['post']) > 10:
+            res = dbase.add_post(request.form['name'], request.form['post'])
+
+            if not res:
+                flash('Ошибка добавления статьи', category='error')
+            else:
+                flash('Статья добавлена успешно', category='success')
+        else:
+            flash('Ошибка добавления статьи', category='error')
+    return render_template('add_post.html', menu=dbase.getMenu(), title='Добавление статьи')
 
 
 if __name__ == '__main__':
