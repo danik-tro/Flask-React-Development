@@ -60,6 +60,18 @@ def about(name="Про Flask"):
         )
 
 
+
+"""
+    * @app.route('/path....', methods=['GET', 'POST'..])
+    * def name_function():
+    *    if request.method == 'POST':
+    *       print(request.form) # выведет на экран
+    *                   словарь формы с ее аргументами            
+    ! Данный шаблон илюстрирует, как нужно создавать маршруты для 
+    ! Функций, где может быть get или post запросы
+"""
+
+
 @app.route('/contact', methods=["POST", "GET"])
 def contact():
     if request.method == 'POST':
@@ -88,6 +100,10 @@ def profile(username):
     if 'userLogged' not in session or session['userLogged'] != username:
         abort(401)
     return f'Профиль пользователя: {username}'
+
+@app.errorhandler(401)
+def page401(error):
+    return f'Ошибка с кодом {error}'
 
 
 @app.errorhandler(404)
