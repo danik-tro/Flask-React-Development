@@ -6,13 +6,16 @@ class FdataBase:
         self.__cur = db.cursor()
 
     def getMenu(self):
-        sql = '''SELECT title FROM  mainmenu'''
+        sql = '''SELECT * FROM  mainmenu'''
 
         try:
             self.__cur.execute(sql)
             res = self.__cur.fetchall()
-            if res:
-                return res
+
+            result = [dict(row) for row in res]
+            print(result)
+            if result:
+                return result
 
         except:
             print('Ошибка чтения из DB')

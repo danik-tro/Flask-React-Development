@@ -44,10 +44,10 @@ app.config['SECRET_KEY'] = 'sghowh2hg82gh09g20gh2hgohg90whewkjdhoiwjf092'#Про
 """
 
 menu = [
-    {"name": "Авторизация", "url" : "login"},
-    {"name" : "Установка", "url" : "install-flask"},
-    {"name" : "Первое приложение", "url" : "first-app"},
-    {"name" : "Обратная связь", "url" : "contact"}
+    {"title": "Авторизация", "url" : "login"},
+    {"title" : "Установка", "url" : "install-flask"},
+    {"title" : "Первое приложение", "url" : "first-app"},
+    {"title" : "Обратная связь", "url" : "contact"}
     ]
 
 @app.route('/')

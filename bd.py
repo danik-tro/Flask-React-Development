@@ -6,9 +6,6 @@ from FDbase import FdataBase
 """
     ! g - контекст приложения
 """
-
-
-
 """
     ! Configuration
 """
@@ -27,13 +24,12 @@ app.config.from_object(__name__)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
 
-
 """
     ! Connecting to db
 """
 def connect_db():
     conn = sqlite3.connect(app.config['DATABASE'])
-    conn.row_factory = sqlite3.Row
+    conn.row_factory = lambda c, r: dict([(col[0], r[idx]) for idx, col in enumerate(c.description)])
 
     return conn
 
@@ -44,7 +40,6 @@ def run_sql(name_script):
         db.cursor().executescript(f.read())
     db.commit()
     db.close()
-
 
 
 """
@@ -67,8 +62,6 @@ def get_db():
     return g.link_db
 
 
-
-
 """
     ! Разрывание связи с DB
 """
@@ -78,15 +71,17 @@ def close_db(error):
         g.link_db.close()
     
 
-
-
 @app.route('/')
 def index():
     db = get_db()
 
     dbase = FdataBase(db)
-
+    """tmp = dbase.getMenu()
+    tmp[0]['url'] = '/'
+    tmp[1]['url'] = 'add_post'
+    print(tmp)"""
     return render_template('index.html', menu=dbase.getMenu())
+
 
 
 if __name__ == '__main__':
