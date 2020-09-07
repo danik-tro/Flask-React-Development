@@ -76,7 +76,7 @@ def index():
     db = get_db()
 
     dbase = FdataBase(db)
-    return render_template('index.html', menu=dbase.getMenu())
+    return render_template('index.html', menu=dbase.getMenu(), posts=dbase.getPostsAnonce())
 
 """
     ! В шаблонах html в url_for нужно писать не жесткие пути

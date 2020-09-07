@@ -54,4 +54,14 @@ class FdataBase:
         
         return (False, False)
 
+    def getPostsAnonce(self):
+        try:
+            self.__cur.execute(f'SELECT id, title, text FROM posts ORDER BY time DESC')
+            result = self.returnResult(self.__cur.fetchall())
+            if result:
+                return result
+        except sqlite3.Error as e:
+            print("Ошибка получения статьи из БД "+ str(e))
+
+        return []
         
