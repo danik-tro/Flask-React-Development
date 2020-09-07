@@ -85,9 +85,8 @@ def index():
     db = get_db()
 
     dbase = FdataBase(db)
-    
 
-    return render_template('index.html', menu=[dbase.getMenu()])
+    return render_template('index.html', menu=dbase.getMenu())
 
 
 if __name__ == '__main__':
