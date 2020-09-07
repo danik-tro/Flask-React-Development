@@ -1,6 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g
 import sqlite3
 import os
+
+"""
+    ! g - контекст приложения
+"""
+
+
 
 """
     ! Configuration
@@ -41,9 +47,31 @@ def create_db():
     db.close()
 
 
-@app.route('/self')
-def self():
-    return "Hello, world!"
+"""
+    ! Соединение с DB
+"""
+def get_db():
+    if not hasattr(g, 'link_db'):
+        g.link_db = connect_db()
+    return g.link_db
+
+
+"""
+    ! Разрывание связи с DB
+"""
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(g, 'link_db'):
+        g.link_db.close()
+    
+
+
+
+@app.route('/')
+def index():
+    db = get_db()
+
+    return render_template('index.html', menu=[])
 
 
 if __name__ == '__main__':

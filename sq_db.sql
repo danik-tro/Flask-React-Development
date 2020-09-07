@@ -3,3 +3,6 @@ CREATE TABLE IF NOT EXISTS mainmenu(
     title text NOT NULL,
     url text NOT NULL
 );
+
+
+
