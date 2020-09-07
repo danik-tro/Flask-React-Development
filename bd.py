@@ -25,7 +25,7 @@ app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
     ! Connecting to db
 """
 def connect_db():
-    conn = sqlite3.connect()
+    conn = sqlite3.connect(app.config['DATABASE'])
     conn.row_factory = sqlite3.Row
 
     return conn
