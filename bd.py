@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, g
 import sqlite3
 import os
+from FDbase import FdataBase
 
 """
     ! g - контекст приложения
@@ -36,6 +37,16 @@ def connect_db():
 
     return conn
 
+
+def run_sql(name_script):
+    db = connect_db()
+    with app.open_resource(name_script, mode='r') as f:
+        db.cursor().executescript(f.read())
+    db.commit()
+    db.close()
+
+
+
 """
     ! Creating db
 """
@@ -56,6 +67,8 @@ def get_db():
     return g.link_db
 
 
+
+
 """
     ! Разрывание связи с DB
 """
@@ -71,7 +84,10 @@ def close_db(error):
 def index():
     db = get_db()
 
-    return render_template('index.html', menu=[])
+    dbase = FdataBase(db)
+    
+
+    return render_template('index.html', menu=[dbase.getMenu()])
 
 
 if __name__ == '__main__':

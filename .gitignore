@@ -1,2 +1,6 @@
 
 __pycache__/bd.cpython-37.pyc
+
+*.pyc
+
+__pycache__/
