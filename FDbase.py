@@ -64,4 +64,7 @@ class FdataBase:
             print("Ошибка получения статьи из БД "+ str(e))
 
         return []
+    #! Пример абстрактного метода 
+    #def funcname(self, parameter_list):
+    #    raise NotImplementedError
         
