@@ -67,4 +67,9 @@ class FdataBase:
     #! Пример абстрактного метода 
     #def funcname(self, parameter_list):
     #    raise NotImplementedError
+
+    #! Пример статического метода класса
+    #@staticmethod
+    #def funcname(parameter_list):
+    #    pass
         
