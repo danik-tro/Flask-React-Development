@@ -72,4 +72,8 @@ class FdataBase:
     #@staticmethod
     #def funcname(parameter_list):
     #    pass
-        
+
+    #! Пример метода класса
+    #def funcname(self, parameter_list):
+    #    pass
+    
