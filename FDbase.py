@@ -76,4 +76,7 @@ class FdataBase:
     #! Пример метода класса
     #def funcname(self, parameter_list):
     #    pass
-    
+
+    #! Пример асинхронного метода
+    #async def funcname(self, parameter_list):
+    #    pass    
