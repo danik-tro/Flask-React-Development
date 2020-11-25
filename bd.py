@@ -9,6 +9,8 @@ from FDbase import FdataBase
 """
     ! Configuration
 """
+
+
 DATABASE = '/tmp/flsite.db'
 DEBUG = True
 SECRET_KEY = 'sghowh2hg82gh09g20gh2hgohg90whewkjdhoiwjf092'
